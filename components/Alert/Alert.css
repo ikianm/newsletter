@@ -1,0 +1,14 @@
+.alert {
+    font-family: var(--regular-font);
+    background-color: rgb(247, 134, 134);
+    height: 80px;
+    width: 350px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: var(--dark-text-color);
+    position: fixed;
+    top: 15px;
+}

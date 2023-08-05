@@ -1,24 +1,44 @@
 'use client';
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState, useContext } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ListInfo from "../components/ListInfo/ListInfo";
+import Alert from "@/components/Alert/Alert";
+import emailContext from "@/Context/emailContext";
 import "./page.css";
 
-export default function NewsLetter() {
+export default function NewsLetter(): JSX.Element {
   const [isEmailValid, setIsEmailValid] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
   const emailRef = useRef<HTMLInputElement>(null);
-  const submitEmailHandler = (e: FormEvent) => {
+  const emailCtx = useContext(emailContext);
+  const router = useRouter();
+  useEffect(() => {
+    setTimeout(() => setShowAlert(false), 3000);
+  }, [showAlert])
+
+  const submitEmailHandler = (e: FormEvent): void => {
     e.preventDefault();
     if (emailRef.current) {
       const emailRgx: RegExp = new RegExp('^[A-Za-z0-9+_.-]+@(.+)$');
-      const emailValue: string = emailRef.current.value;
-      if (emailRgx.test(emailValue)) {
+      if (emailRgx.test(emailRef.current.value)) {
         setIsEmailValid(true);
         fetch('/api/email', {
           method: 'POST',
-          body: JSON.stringify(emailValue),
-        });
-        return;
+          body: JSON.stringify({ email: emailRef.current.value }),
+        })
+          .then(res => {
+            if (!res.ok) {
+              setShowAlert(true);
+              return;
+            }
+            return res.json();
+          })
+          .then(data => {
+            emailCtx.email = data.email;
+            router.replace('/feedback');
+          });
+
       } else {
         setIsEmailValid(false);
       }
@@ -27,6 +47,7 @@ export default function NewsLetter() {
 
   return (
     <div className="main-page">
+      {showAlert ? <Alert /> : null}
       <div className='newsletter'>
         <div className='image-box'>
           <Image
@@ -64,6 +85,5 @@ export default function NewsLetter() {
         </div>
       </div>
     </div>
-
   );
 }
