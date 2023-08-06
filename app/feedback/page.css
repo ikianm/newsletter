@@ -17,7 +17,6 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 30px;
-
 }
 
 .wrapper h2 {
@@ -54,4 +53,21 @@ button {
 button:hover {
     background-image: linear-gradient(to right, #e27ad1, hsl(4, 100%, 61%));
 
+}
+
+@media screen and (max-width: 375px) {
+    .wrapper {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .wrapper p {
+        width: 250px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        width: 95%;
+    }
 }

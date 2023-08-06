@@ -53,8 +53,16 @@ export default function NewsLetter(): JSX.Element {
           <Image
             src='/images/illustration-sign-up-desktop.svg'
             alt='newsletter illustration'
-            width={445}
-            height={650}
+            width={400}
+            height={670}
+            className="newsletter-img-desktop"
+          />
+          <Image
+            src='/images/illustration-sign-up-mobile.svg'
+            alt='newsletter illustration'
+            width={300}
+            height={200}
+            className="newsletter-img-mobile"
           />
         </div>
         <div className='content-box'>
