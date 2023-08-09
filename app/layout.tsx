@@ -1,3 +1,4 @@
+'use client'
 import type { Metadata } from "next";
 import emailContext from "@/Context/emailContext";
 import "./globals.css";
