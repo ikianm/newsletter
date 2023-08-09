@@ -6,7 +6,7 @@ import Image from 'next/image';
 import emailContext from '@/Context/emailContext';
 import './page.css';
 
-export default function page(): JSX.Element {
+export default function Feedback(): JSX.Element {
     const router = useRouter();
     const emailCtx = useContext(emailContext);
     return (
