@@ -1,5 +1,5 @@
 'use client';
-import {MetaData} from 'next
+import {MetaData} from 'next'
 import React, { FormEvent, useEffect, useRef, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
